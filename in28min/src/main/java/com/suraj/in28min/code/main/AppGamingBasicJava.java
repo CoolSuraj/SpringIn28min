@@ -2,6 +2,7 @@ package com.suraj.in28min.code.main;
 
 import com.suraj.in28min.code.game.GameRunner;
 import com.suraj.in28min.code.game.MarioGame;
+import com.suraj.in28min.code.game.Pacman;
 import com.suraj.in28min.code.game.SuperContra;
 
 public class AppGamingBasicJava {
@@ -16,7 +17,7 @@ public class AppGamingBasicJava {
 		var game = new MarioGame(); // this represents: GameConsole game = new MarioGame();
 
 		var gameRunner = new GameRunner(game); // This will have gameRunner refer to marioGame
-		var game1 = new SuperContra();
+		var game1 = new Pacman();
 
 		var gameRunner1 = new GameRunner(game1); // This will have gameRunner refer to SuperContra
 		gameRunner.run();
