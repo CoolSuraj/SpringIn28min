@@ -1,6 +1,8 @@
 package com.suraj.in28min.code.game;
 
-public class MarioGame {
+import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
+
+public class MarioGame implements GameConsole {
 	
 	public void up() {
 		System.out.println("Jump");
