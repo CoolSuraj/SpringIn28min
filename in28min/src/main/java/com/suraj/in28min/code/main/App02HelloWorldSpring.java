@@ -24,7 +24,7 @@ public class App02HelloWorldSpring {
 		/*But We have a solution as well and to make one method as Primary in config class  here made person() as primary */
 		System.out.println(context.getBean(Person.class));
 		System.out.println(context.getBean("PersonCall"));
-		
+		System.out.println(context.getBean("PersonCallWithQualifier"));
 		/**
 		 * to call all beans we use
 		 */
