@@ -21,6 +21,8 @@ public class App01GamingBasicJava {
 		var game = new Pacman(); // this represents: GameConsole game = new MarioGame();
 
 		var gameRunner = new GameRunner(game); // This will have gameRunner refer to marioGame
+		
+		
 
 	}
 
