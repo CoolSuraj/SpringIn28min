@@ -1,22 +1,21 @@
 package com.suraj.in28min.code.game;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
 
-@Configuration  //using spring 
+//@Configuration  //using spring 
 public class GameConfiguration {
 	
-	@Bean
-	@Primary
+//	@Bean
+//	@Primary
 	public GameConsole MarioGame() {
 		return new MarioGame();
 	}
 	
-	@Bean
+//	@Bean
 	public GameRunner gamer(GameConsole game) {
 		var gameRunner = new GameRunner(game);
 		return gameRunner;

@@ -1,15 +1,10 @@
 package com.suraj.in28min.code.game;
 
-import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
+import org.springframework.stereotype.Component;
 
+import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
+@Component
 public class GameRunner {
-	/*
-	 * This is example to show tight coupling like You can take a laptop anywhere
-	 * but not desktop that easily
-	 * 
-	 */
-	// public SuperContra game; //Everytime we have to change the class here for all
-	// games this is called Tight coupling
 
 	/**
 	 * use interface GameConsole to make Slightly Loose Coupling
@@ -17,20 +12,9 @@ public class GameRunner {
 
 	public GameConsole console; // Slightly Loose Coupling due to this interface
 
-	public GameRunner(GameConsole console) {
+	public GameRunner(/*@Qualifier("MarioGame") can be used if the same used at particular class which needs to run*/GameConsole console) {
 
 		this.console = console;
-	}
-
-	public GameConsole getConsole() {
-		return console;
-	}
-
-	public void setConsole(GameConsole console) {
-		this.console = console;
-	}
-
-	public GameRunner() {
 	}
 
 	public void run() {

@@ -1,7 +1,10 @@
 package com.suraj.in28min.code.game;
 
+import org.springframework.stereotype.Component;
+
 import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
 
+@Component
 public class MarioGame implements GameConsole {
 	
 	public void up() {

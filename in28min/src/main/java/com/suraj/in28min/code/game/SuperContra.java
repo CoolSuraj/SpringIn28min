@@ -1,7 +1,10 @@
 package com.suraj.in28min.code.game;
 
+import org.springframework.stereotype.Component;
+
 import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
 
+@Component
 public class SuperContra implements GameConsole{
 	public void up() {
 		System.out.println("Up -contra");

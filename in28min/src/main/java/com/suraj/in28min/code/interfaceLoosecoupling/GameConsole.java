@@ -1,5 +1,8 @@
 package com.suraj.in28min.code.interfaceLoosecoupling;
 
+import org.springframework.stereotype.Component;
+
+
 public interface GameConsole {
 	
 	public static void getClassName() {
