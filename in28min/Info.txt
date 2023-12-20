@@ -1,0 +1,21 @@
+@Component
+-- An instance of class which is manged by spring framework
+@Autowired
+-- To wire the Dependency for spring bean
+@ComponentScan 
+-- Scan all the components
+-- Dependency Injection -- Identify Beans , their Dependencies and wire them together(provides IOC)
+-- Inversion of control IOC -- Takes care of object creation spring itself rather than programmer
+
+--IOC Container -- Manages the lifecycle of beans and dependencies
+Eg: ApplicationContext, BeanFactory
+
+--  		@Component   								@Bean
+			Can be used any Java Class 					typically Used for spring config classes
+			Ease of use									you write all code
+			Setter,constructor,field injection			Yes-menthod call or method params autowiring
+			Created by Spring							Manually created
+			
+
+			
+
