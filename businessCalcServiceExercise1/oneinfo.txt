@@ -1,0 +1,3 @@
+Deafult initalization of spring Beans is Eager means Quickly !!
+
+But if Lazy initalization needed then can be achived by @Lazy

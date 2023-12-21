@@ -1,11 +1,14 @@
 package com.suraj.in28min.code.game;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.suraj.in28min.code.interfaceLoosecoupling.GameConsole;
 
 @Component
-public class SuperContra implements GameConsole{
+@Lazy // this is used to not initalize this Bean/component at Startup , whenever
+		// Someone actually calls this then only it will invoke
+public class SuperContra implements GameConsole {
 	public void up() {
 		System.out.println("Up -contra");
 	}
