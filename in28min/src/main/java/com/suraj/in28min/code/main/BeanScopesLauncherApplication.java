@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
  * @author Suraj:
  * This is an Example where the instance is of Spring Singleton (created by  Spring IOC container)
  * bean where you will get only one instance
+ * Stateless Beans
  */
 @Component
 //@Scope(value=ConfigurableBeanFactory.SCOPE_SINGLETON)  //This is syntax -- no need to mention it is by default
@@ -22,6 +23,7 @@ class NormalClass {
 /**
  * 
  * this is example of multiple Instances created by Spring IOC container
+ * Stateful Beans
  */
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Component
