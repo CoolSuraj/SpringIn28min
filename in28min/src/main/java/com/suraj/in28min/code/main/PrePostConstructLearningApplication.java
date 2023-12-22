@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Named;
 
 @Component
-class SomeClass{
+class SomeClass {
 	private SomeDependency someDependency;
 
 	public SomeClass(SomeDependency someDependency) {
@@ -20,7 +21,8 @@ class SomeClass{
 		System.out.println("All Dependecies Ready");
 	}
 	/**
-	 * The @postConstruct used for initializing the method as soon as Bean are initialized(Autowired)
+	 * The @postConstruct used for initializing the method as soon as Bean are
+	 * initialized(Autowired)
 	 */
 	@PostConstruct
 	public void init() {
@@ -35,24 +37,25 @@ class SomeClass{
 	}
 }
 
-@Component
-class SomeDependency{
-	
+@Named  // jakarta context dependency injection - 
+class SomeDependency {
+
 	public void getReady() {
 		System.out.println("Some logic using SomeDependency");
-		
-	}
-	
-}
 
+	}
+
+}
 
 @Configuration
 @ComponentScan
 public class PrePostConstructLearningApplication {
 
 	public static void main(String[] args) {
-		try(var context = new AnnotationConfigApplicationContext(PrePostConstructLearningApplication.class)){
-			Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+		try (var context = new AnnotationConfigApplicationContext(
+				PrePostConstructLearningApplication.class)) {
+			Arrays.stream(context.getBeanDefinitionNames())
+					.forEach(System.out::println);
 		}
 
 	}
