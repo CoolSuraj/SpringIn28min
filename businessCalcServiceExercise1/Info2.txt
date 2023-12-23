@@ -1,0 +1,15 @@
+--Spring Stereotype Annotations-- 
+@Component
+-- Generic annotation applicable for any class
+for all Spring Stereotype Annotations
+
+Specializations:
+
+@Service:- Indicate that an annotated class has business logic
+@Controller :- Indicates that an annotated class is a "Controller"
+--Used to define controllers in your web applications 
+
+@Repository :- denotes Annotated class is working with Database
+
+			
+
