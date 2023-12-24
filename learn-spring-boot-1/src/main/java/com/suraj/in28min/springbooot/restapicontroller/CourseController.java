@@ -14,7 +14,9 @@ public class CourseController {
 	@RequestMapping("/courses")  //To map 
 	public List<Course> retrieveAllCourses() {
 		return Arrays.asList(new Course("Learn AWS", 1, "in28minutes"),
-				new Course("Learn Devops", 2, "JavaTechie"));
+				new Course("Learn Devops", 2, "JavaTechie"),new Course("Azure", 3, "Geekfs"));
 	}
+	
+	
 
 }
