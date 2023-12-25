@@ -26,6 +26,8 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 		 */
 		repo.insert(new Course("Learn Python", 4, "AutomateBoringStuff"));
 		repo.deleteCourseById(2);//it will delete course with id 2 every time this runs!!
+		
+		System.out.println(repo.findById(3));
 	}
 
 }
