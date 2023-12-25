@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.suraj.springboot.learnjpaandhibernate.dto.Course;
+
 @Component
 public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 	
@@ -15,8 +17,15 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 	 */
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/**
+		 * insert using the query
+		 */
 		repo.insert();
+		/**
+		 * Insert using dto's and SpringJdbcTemplate
+		 */
+		repo.insert(new Course("Learn Python", 4, "AutomateBoringStuff"));
+		repo.deleteCourseById(2);//it will delete course with id 2 every time this runs!!
 	}
 
 }
