@@ -10,9 +10,11 @@ import com.suraj.springboot.learnjpaandhibernate.dto.Course;
 @Repository
 public class CourseJdbcRepository {
 	
-	private static final String DELETE_FROM_COURSE_WHERE_ID = " delete from course where id=?; ";
 	@Autowired
 	private JdbcTemplate springJdbcTemplate;
+	
+	private static final String DELETE_FROM_COURSE_WHERE_ID = " delete from course where id=?; ";
+	
 	/**
 	 * This is insert queries inside text block represented by 3 double quotes open-close
 	 */

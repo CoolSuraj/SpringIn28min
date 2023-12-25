@@ -11,6 +11,8 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 	
 	@Autowired
 	private CourseJdbcRepository repo; 
+	
+	
 	/**
 	 * When we implement this interface we actually can run anything at startup of spring boot application
 	 * So We are running custom insert queries so that we can have some h2 data predefined
