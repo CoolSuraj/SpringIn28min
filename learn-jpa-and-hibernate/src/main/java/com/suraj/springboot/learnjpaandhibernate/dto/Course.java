@@ -1,9 +1,26 @@
 package com.suraj.springboot.learnjpaandhibernate.dto;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;  
+/**
+ * We will now check how to use JPA for this we need to use some annotations like Entity,Table,Column,etc
+ * @author admin
+ *
+ */
+@Entity
 public class Course {
-
-	private String name;
+	/**
+	 * As the name in here and Table exactly same we are not using like below else use like 
+	 * Eg:
+	 * @Column(name="name")
+		private String name;
+	 */
+	@Id
 	private long id;
+	@Column
+	private String name;
+	@Column
 	private String author;
 	
 	public String getName() {
