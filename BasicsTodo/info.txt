@@ -1,0 +1,9 @@
+logging is IMP
+
+
+logging.level.org.springframework = trace   ----- very large logs 
+logging.level.org.springframework = debug  ----is causes lot of log
+logging.level.org.springframework = info  ----- somewhat less log
+logging.level.com.suraj.learn.springmvc.BasicsTodo  = debug -- this will apply only for this perticular package i.e com.suraj.learn.springmvc.BasicsTodo
+
+
