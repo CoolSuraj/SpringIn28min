@@ -33,7 +33,10 @@ public class LoginController {
 		 * ModelMap is something which is used to send value to frontEnd
 		 */
 		model.put("name", name);
-		return "login";
+		return "loginGreet";
 	}
+
+	
+	
 	
 }
