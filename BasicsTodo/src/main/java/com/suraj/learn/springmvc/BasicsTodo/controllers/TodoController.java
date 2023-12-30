@@ -53,6 +53,7 @@ public class TodoController {
 		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
 		todoService.addTodo(new Todo((long)(todosByUsername.size()+1) , "surya",description,
 				LocalDate.now().plusMonths(12), false));
+		//This redirect will actually call http://localhost:8080/list-todos 
 		return "redirect:list-todos";
 		
 	}
