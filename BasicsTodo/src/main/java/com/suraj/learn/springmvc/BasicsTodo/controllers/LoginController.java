@@ -8,10 +8,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.suraj.learn.springmvc.BasicsTodo.service.AuthenticationService;
 
 @Controller
+@SessionAttributes("name")/*this will ensure that this name attribute will stay till session completed
+but the condition is that we have to place over all the classes using this else we cannot use the value*/
 public class LoginController {
 	/**
 	 * This is the logger to use, from slf4j

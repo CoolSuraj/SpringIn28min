@@ -7,6 +7,6 @@
 <title>Todo App</title>
 </head>
 <body>
-	<div>Your Todos are ${todos}</div>
+	<div>Hey, ${name} Your Todos are ${todos}</div>
 </body>
 </html>
