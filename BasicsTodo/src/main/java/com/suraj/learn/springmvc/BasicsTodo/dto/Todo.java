@@ -1,12 +1,18 @@
 package com.suraj.learn.springmvc.BasicsTodo.dto;
 
 import java.time.LocalDate;
+
+import jakarta.validation.constraints.Size;
 //Static List of Todo's 
 
 public class Todo {
 
 	private long id;
 	private String username;
+	/**
+	 * This is validation at Server for not adding less than 3 charachters
+	 */
+	@Size(min=3,message = "At least 3 char to be added") 
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
