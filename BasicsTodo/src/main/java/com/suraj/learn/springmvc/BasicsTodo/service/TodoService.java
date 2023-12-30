@@ -33,6 +33,10 @@ public class TodoService {
 		 */
 		return todos.stream().filter(e->e.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
 	}
+	
+	public void addTodo(Todo todo) {
+		todos.add(todo);
+	}
 
 	
 	

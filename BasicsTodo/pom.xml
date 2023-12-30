@@ -43,6 +43,19 @@
 		    <artifactId>glassfish-jstl</artifactId>
 		    <version>11.0.19</version>
 		</dependency>
+<!-- to add bootstrap and jquery webjars -->
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap</artifactId>
+		    <version>5.3.2</version>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/org.webjars.bower/jquery -->
+	<dependency>
+	    <groupId>org.webjars.bower</groupId>
+	    <artifactId>jquery</artifactId>
+	    <version>3.7.0</version>
+	</dependency>
 
 		
 		<dependency>

@@ -7,7 +7,11 @@
 <title>Welcome Page</title>
 </head>
 <body>
-	<div>Welcome User: ${name} to this Page</div>
-	<div>Mange your Todos <a href="list-todos">here</a></div>
+	<div class="container">
+		<h1>Welcome User: ${name} to this Page</h1>
+		<div>
+			Mange your Todos <a href="list-todos">here</a>
+		</div>
+	</div>
 </body>
 </html>

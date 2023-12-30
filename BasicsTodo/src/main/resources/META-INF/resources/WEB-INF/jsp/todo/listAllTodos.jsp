@@ -4,33 +4,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Todo App</title>
+<!-- webjars is where all libraries will be present Eg: CSS below and we do not need to specify META-INF/resources  -->
+<link href="webjars/bootstrap/5.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<title>List Todos Page</title>
 </head>
 <body>
-	<div>Hey, ${name} Your Todos are</div>
-	<table>
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>description</th>
-				<th>Target Date</th>
-				<th>Is Done ?</th>
-			</tr>
-		</thead>
-		<tbody>
-		<!-- This loops over List -->
-			<c:forEach items="${todos}" var="todo">
+	<div class="container"><!-- Bootstrap at first ask to put everything in div container -->
+		<h1>Your Todos</h1>
+		<table class="table">
+			<thead>
 				<tr>
-				<td>${todo.id}</td>
-				<td>${todo.description}</td>
-				<td>${todo.targetDate}</td>
-				<td>${todo.done}</td>
+					<th>id</th>
+					<th>Description</th>
+					<th>Target Date</th>
+					<th>Is Done?</th>
 				</tr>
-				
+			</thead>
+			<tbody>
+				<c:forEach items="${todos}" var="todo">
+					<tr>
+						<td>${todo.id}</td>
+						<td>${todo.description}</td>
+						<td>${todo.targetDate}</td>
+						<td>${todo.done}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<a href="add-todo" class="btn btn-success">Add Todo</a>
+	</div>
+	<!-- adding JavaScript and Bootstrap same as CSS -->
+	<script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+	<script src="webjars/jquery/3.7.0/dist/jquery.min.js"></script>
 
-			</c:forEach>
-		</tbody>
-	</table>
 </body>
 </html>
