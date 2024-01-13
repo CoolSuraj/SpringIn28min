@@ -20,7 +20,8 @@
 			<!-- This is for binding to Bean -->
 			<form:input type="hidden" path="done" />
 			<form:input type="hidden" path="id" />
-
+			<form:input type="hidden" path="username" />
+			<form:input type="hidden" path="targetDate" />
 			<!-- To show Errors occured on Page this is used -->
 			<form:errors path="description" cssClass="text-warning"></form:errors>
 

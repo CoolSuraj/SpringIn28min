@@ -45,6 +45,49 @@ public class TodoController {
 		return "todo/todo";
 	}
 	/**
+	 * This will delete the Todo with that ID
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value= "delete-todo", method=RequestMethod.GET)
+	public String deleteSelectedTodo(@RequestParam long id, ModelMap model) {
+		todoService.deleteTodo(id);
+		return "redirect:list-todos";
+	}
+	/**
+	 * This will delete the Todo with that ID
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value= "update-todo", method=RequestMethod.GET)
+	public String showUpdateTodoPage(@RequestParam long id, ModelMap model) {
+		Todo todo = todoService.getTodoById(id);
+		model.addAttribute(todo);
+		return "todo/todo";
+	}
+	/**
+	 * as Validation will give very bad o/p when validation fails to avoid
+	 * That we use BindingResult so if Error is there we will go to some Good Page
+	 * In this case the same page
+	 */
+	@RequestMapping(value= "update-todo", method=RequestMethod.POST)
+	public String updateSelectedTodo( ModelMap model,@Valid Todo todo,BindingResult result ) {
+		
+		if(result.hasErrors()) {
+			return "todo/todo";
+		}
+		
+		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+		
+		todoService.updateTodo(todo);
+		//This redirect will actually call http://localhost:8080/list-todos 
+		return "redirect:list-todos";
+		
+	}
+	
+	/**
 	 * As there were no validations we had hence we change mapping for now 
 	 * @param description
 	 * @param model

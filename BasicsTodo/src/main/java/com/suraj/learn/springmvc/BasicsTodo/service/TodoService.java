@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.suraj.learn.springmvc.BasicsTodo.dto.Todo;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TodoService {
 
@@ -31,12 +33,37 @@ public class TodoService {
 		/**
 		 * We should compare each and every Todo object and find the required Todos
 		 */
-		return todos.stream().filter(e->e.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+		System.out.println(todos);
+		return todos.stream().filter(e-> e.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
 	}
 	
 	public void addTodo(Todo todo) {
 		todos.add(todo);
 	}
+	/**
+	 * Using Stream to collect the elements which is not equals to given ID
+	 * @param id
+	 */
+	public void deleteTodo(long id) {
+		//todos = todos.stream().filter(e->e.getId() != id).collect(Collectors.toList());
+		/**
+		 * Easy Implementation
+		 */
+		todos.removeIf(todo->todo.getId() == id);
+	}
+	
+	public Todo getTodoById(long id) {
+		Todo todo = todos.stream().filter(todo1->todo1.getId() == id).findFirst().get();
+		return todo;
+	}
+
+	public void updateTodo(@Valid Todo todo) {
+		deleteTodo(todo.getId());
+		addTodo(todo);
+		
+	}
+	
+	
 
 	
 	
