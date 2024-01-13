@@ -33,7 +33,7 @@ public class TodoService {
 		/**
 		 * We should compare each and every Todo object and find the required Todos
 		 */
-		System.out.println(todos);
+
 		return todos.stream().filter(e-> e.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
 	}
 	

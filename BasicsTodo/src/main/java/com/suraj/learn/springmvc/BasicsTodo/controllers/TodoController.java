@@ -3,6 +3,8 @@ package com.suraj.learn.springmvc.BasicsTodo.controllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,9 +29,14 @@ public class TodoController {
 	@Autowired
 	private TodoService todoService;
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@RequestMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
+		logger.debug("Started the api");
+		logger.info("Calling Service to get All Todos");
 		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+		logger.info("Service fetched and sent to Front End following todos "+todosByUsername.toString());
 		model.addAttribute("todos" , todosByUsername); //for collection we can use this
 		return "todo/listAllTodos"; //as this is in seaprate folder we can mention like this 
 		/**
@@ -95,14 +102,14 @@ public class TodoController {
 	 */
 	@RequestMapping(value= "add-todo-basic", method=RequestMethod.POST)
 	public String addNewTodo(@RequestParam String description,ModelMap model) {
-//method-1
-		//		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+//		method-1
+//		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
 //		todosByUsername.add(new Todo((long)(todosByUsername.size()-1) , "surya",description,
 //				LocalDate.now().plusMonths(12), false));
 //		model.addAttribute("todos" , todosByUsername);
 //		return "todo/listAllTodos";
 	
-		//method 2
+//		method 2
 		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
 		todoService.addTodo(new Todo((long)(todosByUsername.size()+1) , "surya",description,
 				LocalDate.now().plusMonths(12), false));
