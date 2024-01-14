@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("name")
 public class WelcomeController {
 	
-	
+
 	
 	/**
 	 * Using this method to redirect after login we will now use Spring Security to
@@ -19,6 +19,6 @@ public class WelcomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String goToLoginPageBase(ModelMap model) {
 		model.put("name", "surya");
-		return "welcome";
+		return "welcome"; 
 	}
 }
