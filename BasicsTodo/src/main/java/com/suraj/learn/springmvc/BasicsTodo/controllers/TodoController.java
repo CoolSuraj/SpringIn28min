@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,11 @@ public class TodoController {
 	public String listAllTodos(ModelMap model) {
 		logger.debug("Started the api");
 		logger.info("Calling Service to get All Todos");
-		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+		/**
+		 * getting username due to SessionAttributes/Model
+		 */
+		String username = (String)model.get("name");
+		List<Todo> todosByUsername = todoService.getTodosByUsername(username);
 		logger.info("Service fetched and sent to Front End following todos "+todosByUsername.toString());
 		model.addAttribute("todos" , todosByUsername); //for collection we can use this
 		return "todo/listAllTodos"; //as this is in seaprate folder we can mention like this 
@@ -85,14 +90,20 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "todo/todo";
 		}
-		
-		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+		/**
+		 * String username = (String)model.get("name");  --> if we directly hit update-todo then this line not work properly
+		 * hence we will try to get the value from SecurityContextHolder.getContext().getAuthentication()
+		 * 
+		 */
+		String username = getLoggedInUsername(model);
+		List<Todo> todosByUsername = todoService.getTodosByUsername(username);
 		
 		todoService.updateTodo(todo);
 		//This redirect will actually call http://localhost:8080/list-todos 
 		return "redirect:list-todos";
 		
 	}
+	
 	
 	/**
 	 * As there were no validations we had hence we change mapping for now 
@@ -110,7 +121,8 @@ public class TodoController {
 //		return "todo/listAllTodos";
 	
 //		method 2
-		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+		String username = (String)model.get("name");
+		List<Todo> todosByUsername = todoService.getTodosByUsername(username);
 		todoService.addTodo(new Todo((long)(todosByUsername.size()+1) , "surya",description,
 				LocalDate.now().plusMonths(12), false));
 		//This redirect will actually call http://localhost:8080/list-todos 
@@ -138,11 +150,21 @@ public class TodoController {
 			return "todo/todo";
 		}
 		
-		List<Todo> todosByUsername = todoService.getTodosByUsername("surya");
+		String username =  (String)model.get("name");
+		List<Todo> todosByUsername = todoService.getTodosByUsername(username);
 		todoService.addTodo(new Todo((long)(todosByUsername.size()+1) , "surya",todo.getDescription(),
 				todo.getTargetDate(), false));
 		//This redirect will actually call http://localhost:8080/list-todos 
 		return "redirect:list-todos";
 		
+	}
+	
+	/**
+	 * value of username from SecurityContextHolder
+	 * @param model
+	 * @return
+	 */
+	private String getLoggedInUsername(ModelMap model) {
+		return SecurityContextHolder.getContext().getAuthentication().getName();
 	}
 }
