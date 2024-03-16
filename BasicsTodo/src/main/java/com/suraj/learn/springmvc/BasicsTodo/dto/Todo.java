@@ -2,12 +2,22 @@ package com.suraj.learn.springmvc.BasicsTodo.dto;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 //Static List of Todo's 
 
-public class Todo {
 
+//JPA allow us to map Bean-> Database by using few annotations
+//When you use this annotation Spring boot directly creates table if it is not present(at least h2)
+@Entity  // you can customize name by addiing like this (name="DailyTasks")
+public class Todo {
+	
+	@Id
+	@GeneratedValue
 	private long id;
+	//@Column //this also we can use but if you need no customization is needed
 	private String username;
 	/**
 	 * This is validation at Server for not adding less than 3 charachters
