@@ -6,4 +6,31 @@ logging.level.org.springframework = debug  ----is causes lot of log
 logging.level.org.springframework = info  ----- somewhat less log
 logging.level.com.suraj.learn.springmvc.BasicsTodo  = debug -- this will apply only for this perticular package i.e com.suraj.learn.springmvc.BasicsTodo
 
+Docker Info:-
 
+Github Link: https://github.com/in28minutes/master-spring-and-spring-boot/tree/main/11-web-application#docker
+
+
+
+Launch MySQL using Docker
+docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=todos-user --env MYSQL_PASSWORD=dummytodos --env MYSQL_DATABASE=todos --name mysql --publish 3306:3306 mysql:8-oracle
+
+
+application.properties 
+ 
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/todos
+spring.datasource.username=todos-user
+spring.datasource.password=dummytodos
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+ 
+#todos-user@localhost:3306
+
+#For mysqlsh go to Docker desktop -> Containers -> mysql Container/image -> Exec , here you can use below command
+mysqlsh commands
+mysqlsh
+\connect todos-user@localhost:3306
+\sql
+use todos
+select * from todo;
+\quit
