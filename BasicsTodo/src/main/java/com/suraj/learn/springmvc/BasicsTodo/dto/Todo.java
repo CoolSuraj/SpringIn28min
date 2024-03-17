@@ -36,6 +36,11 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.done = done;
 	}
+	
+	public Todo() {
+		super();
+		
+	}
 
 	public long getId() {
 		return id;
