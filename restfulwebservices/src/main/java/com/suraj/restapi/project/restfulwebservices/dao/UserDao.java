@@ -37,6 +37,13 @@ public class UserDao {
 		added = users.add(user);
 		return added;
 	}
+
+	public boolean deleteUserById(int id) {
+		
+		boolean removed = false;
+		removed = users.removeIf(u->u.getId()==id);
+		return removed;
+	}
 	
 	
 

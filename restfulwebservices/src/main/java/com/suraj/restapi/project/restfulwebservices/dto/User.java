@@ -2,10 +2,15 @@ package com.suraj.restapi.project.restfulwebservices.dto;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 public class User {
 
 	private Integer id;
+	@Size(min=2,message="Name Should Have at least 2 charchters")	
 	private String name;
+	@Past(message="BirthDate Should not be greater than present date") //this will ensure that birthdate should not be above present
 	private LocalDate birthDate;
 
 	public Integer getId() {
