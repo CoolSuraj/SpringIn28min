@@ -21,7 +21,10 @@ import jakarta.validation.Valid;
 
 @RestController
 public class UserController {
-	
+	/**
+	 * springdoc-openapi java library helps to automate the 
+	 * generation of API documentation for spring boot projects. 
+	 */
 	@Autowired
 	UserDao userDao;
 	/**
