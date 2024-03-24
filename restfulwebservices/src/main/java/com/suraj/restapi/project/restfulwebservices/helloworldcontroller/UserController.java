@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.suraj.restapi.project.restfulwebservices.dao.UserDao;
 import com.suraj.restapi.project.restfulwebservices.dto.User;
+import com.suraj.restapi.project.restfulwebservices.exceptions.UserNotFoundException;
 
 @RestController
 public class UserController {
@@ -37,10 +38,24 @@ public class UserController {
 	 * even if you do not use ResponseEntity still jackson Api will do it's job by default
 	 * @param id
 	 * @return
+	 * 
+	 * @GetMapping("/users/{id}")
+	public User retrieveUserById(@PathVariable int id){
+		User user = userDao.findUserById(id);
+		
+		return user; //this will go as Json as response
+		
+	}
 	 */
 	@GetMapping("/users/{id}")
 	public User retrieveUserById(@PathVariable int id){
+		
 		User user = userDao.findUserById(id);
+		
+		if(user == null)
+		{
+			throw new UserNotFoundException("user id "+id);
+		}
 		
 		return user; //this will go as Json as response
 		

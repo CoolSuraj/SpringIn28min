@@ -29,7 +29,7 @@ public class UserDao {
 	}
 	
 	public User findUserById(int id) {
-		return users.stream().filter(u->(u.getId()).equals(id)).findFirst().get();
+		return users.stream().filter(u->(u.getId()).equals(id)).findFirst().orElse(null);
 	}
 	
 	public boolean CreateUser(User user) {
