@@ -55,7 +55,7 @@ public class UserController {
 	}
 	 */
 	@GetMapping("/users/{id}")
-	public  MappingJacksonValue /* EntityModel<User>  Commenting Hateos for now */   retrieveUserById(@PathVariable int id){
+	public  User/*MappingJacksonValue *//* EntityModel<User>  Commenting Hateos for now */   retrieveUserById(@PathVariable int id){
 		/**
 		 * EntityModel is used for creating hateos standard -- which is HAL based standard
 		 */
@@ -87,16 +87,17 @@ public class UserController {
 //			}
 //		 */
 //		
-		
+	/*	
 //		Let's Create logic to ignore birthDate at run time for this api 
 		//this is called Dynamic Filtering
 		MappingJacksonValue jacksonValue = new MappingJacksonValue(user);
 		SimpleBeanPropertyFilter filterB = SimpleBeanPropertyFilter.filterOutAllExcept("id","Name");
-		FilterProvider filters = new SimpleFilterProvider().addFilter("BirthDateFilter", filterB );
+		FilterProvider filters = new SimpleFilterProvider().addFilter("BirthDateFilter", filterB );//for this small change needed at Bean Level
 		jacksonValue.setFilters(filters);
 		
 		return jacksonValue; //this will go as Json as response
-		
+		*/
+		return user;
 	}
 	
 	/**

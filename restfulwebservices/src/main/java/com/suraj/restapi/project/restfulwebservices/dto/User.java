@@ -7,6 +7,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 /**
@@ -15,9 +20,12 @@ import jakarta.validation.constraints.Size;
  *
  */
 @JsonIgnoreProperties("userName") //this will also ignore in json the mentioned fields
-@JsonFilter("BirthDateFilter")//this is part of dynamic filtering for users/{id}
+//@JsonFilter("BirthDateFilter")//this is part of dynamic filtering for users/{id}
+@Entity(name="user_details")  //this is for DB/JPA/hibernate to recognize as bean/table
 public class User {
-
+	
+	@Id
+	@GeneratedValue()
 	private Integer id;
 	@Size(min=2,message="Name Should Have at least 2 charchters")	
 	@JsonProperty(value="Name")  //this annotation will change how it looks in our API
@@ -25,8 +33,9 @@ public class User {
 	@Past(message="BirthDate Should not be greater than present date") //this will ensure that birthdate should not be above present
 	private LocalDate birthDate;
 	@JsonIgnore  //this will ignore password in Json 
+	@Transient  //ignore for DB/JPA operations
 	private String password;
-	
+	@Transient  //ignore for DB/JPA operations
 	private String userName;
 	
 	

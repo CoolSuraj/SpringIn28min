@@ -31,13 +31,24 @@
 		    <artifactId>spring-boot-starter-validation</artifactId>
 		    <version>3.2.0</version>
 		</dependency>
+			<!-- This Dependency is used to monitor our application used in prod mostly-->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		    
+		</dependency>
 		<!-- HATEOS is standard for creating JSON Hypertext Application Language which will create standard links of api inside json-->
 			<dependency>
 		    <groupId>org.springframework.hateoas</groupId>
 		    <artifactId>spring-hateoas</artifactId>
 		    <version>2.2.0</version>
 		</dependency>
-
+	<!-- HAL Explorer so that easy to check after adding this go to localhost:8080/-->
+	<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-rest-hal-explorer</artifactId>
+		    
+		</dependency>
 		<!-- This Dependency is used to have OpenAPI standard Documentation
 		By adding this below library you get swagger Ui 
 		at http://localhost:8080/swagger-ui.html -->
