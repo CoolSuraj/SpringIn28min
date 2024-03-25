@@ -55,7 +55,7 @@ public class UserController {
 	}
 	 */
 	@GetMapping("/users/{id}")
-	public EntityModel<User> retrieveUserById(@PathVariable int id){
+	public /* EntityModel<User>  Commenting Hateos for now */  User retrieveUserById(@PathVariable int id){
 		/**
 		 * EntityModel is used for creating hateos standard -- which is HAL based standard
 		 */
@@ -65,29 +65,29 @@ public class UserController {
 		{
 			throw new UserNotFoundException("user id "+id);
 		}
-		//This will create EntityModel out of User
-		EntityModel<User> entity = EntityModel.of(user);
-		
-		//this Static methods used to create Link for retrieveAllUsers();
-		WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
-		
-		//Now we use this in entity
-		entity.add(link.withRel("all-users"));
-		/**
-		 * Due to this EntityModel implementation you will get response like this 
-		 * {
-			    "id": 1,
-			    "name": "Name One",
-			    "birthDate": "1999-03-25",
-			    "_links": {
-			        "all-users": {
-			            "href": "http://localhost:8080/users"
-			        }
-			    }
-			}
-		 */
-		
-		return entity; //this will go as Json as response
+//		//This will create EntityModel out of User
+//		EntityModel<User> entity = EntityModel.of(user);
+//		
+//		//this Static methods used to create Link for retrieveAllUsers();
+//		WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+//		
+//		//Now we use this in entity
+//		entity.add(link.withRel("all-users"));
+//		/**
+//		 * Due to this EntityModel implementation you will get response like this 
+//		 * {
+//			    "id": 1,
+//			    "name": "Name One",
+//			    "birthDate": "1999-03-25",
+//			    "_links": {
+//			        "all-users": {
+//			            "href": "http://localhost:8080/users"
+//			        }
+//			    }
+//			}
+//		 */
+//		
+		return user; //this will go as Json as response
 		
 	}
 	
