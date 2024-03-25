@@ -1,15 +1,12 @@
 package com.suraj.restapi.project.restfulwebservices.helloworldcontroller;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.suraj.restapi.project.restfulwebservices.dao.UserDao;
 import com.suraj.restapi.project.restfulwebservices.dto.User;
 import com.suraj.restapi.project.restfulwebservices.exceptions.UserNotFoundException;
@@ -55,7 +55,7 @@ public class UserController {
 	}
 	 */
 	@GetMapping("/users/{id}")
-	public /* EntityModel<User>  Commenting Hateos for now */  User retrieveUserById(@PathVariable int id){
+	public  MappingJacksonValue /* EntityModel<User>  Commenting Hateos for now */   retrieveUserById(@PathVariable int id){
 		/**
 		 * EntityModel is used for creating hateos standard -- which is HAL based standard
 		 */
@@ -87,7 +87,15 @@ public class UserController {
 //			}
 //		 */
 //		
-		return user; //this will go as Json as response
+		
+//		Let's Create logic to ignore birthDate at run time for this api 
+		//this is called Dynamic Filtering
+		MappingJacksonValue jacksonValue = new MappingJacksonValue(user);
+		SimpleBeanPropertyFilter filterB = SimpleBeanPropertyFilter.filterOutAllExcept("id","Name");
+		FilterProvider filters = new SimpleFilterProvider().addFilter("BirthDateFilter", filterB );
+		jacksonValue.setFilters(filters);
+		
+		return jacksonValue; //this will go as Json as response
 		
 	}
 	
