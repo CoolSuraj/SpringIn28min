@@ -40,6 +40,7 @@ public class HelloWorldController {
 	
 	@RequestMapping(method=RequestMethod.GET , path ="/good-morning")
 	public String GoodMorningInternational() {
+		//for this to work you need to create messages_nl.properties for dutch and also need to add Accept-Language=nl in request headers
 		Locale locale = LocaleContextHolder.getLocale();
 		return messageSource.getMessage("good.morning.message", null, "default Good Morning", locale);
 	}
