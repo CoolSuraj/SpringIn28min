@@ -1,9 +1,13 @@
 package com.suraj.restapi.project.restfulwebservices.helloworldcontroller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +22,6 @@ import com.suraj.restapi.project.restfulwebservices.dto.User;
 import com.suraj.restapi.project.restfulwebservices.exceptions.UserNotFoundException;
 
 import jakarta.validation.Valid;
-
 @RestController
 public class UserController {
 	/**
@@ -52,16 +55,39 @@ public class UserController {
 	}
 	 */
 	@GetMapping("/users/{id}")
-	public User retrieveUserById(@PathVariable int id){
-		
+	public EntityModel<User> retrieveUserById(@PathVariable int id){
+		/**
+		 * EntityModel is used for creating hateos standard -- which is HAL based standard
+		 */
 		User user = userDao.findUserById(id);
 		
 		if(user == null)
 		{
 			throw new UserNotFoundException("user id "+id);
 		}
+		//This will create EntityModel out of User
+		EntityModel<User> entity = EntityModel.of(user);
 		
-		return user; //this will go as Json as response
+		//this Static methods used to create Link for retrieveAllUsers();
+		WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		
+		//Now we use this in entity
+		entity.add(link.withRel("all-users"));
+		/**
+		 * Due to this EntityModel implementation you will get response like this 
+		 * {
+			    "id": 1,
+			    "name": "Name One",
+			    "birthDate": "1999-03-25",
+			    "_links": {
+			        "all-users": {
+			            "href": "http://localhost:8080/users"
+			        }
+			    }
+			}
+		 */
+		
+		return entity; //this will go as Json as response
 		
 	}
 	
